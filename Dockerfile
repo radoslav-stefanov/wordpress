@@ -3,6 +3,8 @@ FROM wordpress:6.0.0-php8.0-fpm-alpine
 LABEL Maintainer="Radoslav Stefanov <radoslav@rstefanov.info>" \
       Description="Lightweight container with Nginx and PHP-FPM 7, based on Alpine Linux."
 
+RUN docker-php-ext-install pdo pdo_mysql
+
 RUN touch /usr/local/etc/php/conf.d/uploads.ini \
     && echo "upload_max_filesize = 10240M" >> /usr/local/etc/php/conf.d/uploads.ini \
     && echo "post_max_size = 10240M" >> /usr/local/etc/php/conf.d/uploads.ini \
