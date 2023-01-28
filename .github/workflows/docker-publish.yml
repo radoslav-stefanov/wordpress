@@ -7,10 +7,14 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  PHP_VERSION: ${{ matrix.php_version }}
 
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version: [7.4, 8.0]
     permissions:
       contents: read
       packages: write
@@ -38,7 +42,7 @@ jobs:
         with:
           images: |
             rstefanov/wordpress
-            ghcr.io/${{ github.repository }}
+            ghcr.io/${{ github.repository }}:php-${{ matrix.php_version }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc

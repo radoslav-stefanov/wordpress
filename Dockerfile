@@ -1,7 +1,7 @@
-FROM wordpress:6.0.0-php8.0-fpm-alpine
+FROM wordpress:6.0.0-php${PHP_VERSION}-fpm-alpine
 
 LABEL Maintainer="Radoslav Stefanov <radoslav@rstefanov.info>" \
-      Description="Lightweight container with Nginx and PHP-FPM 7, based on Alpine Linux."
+      Description="Lightweight container with Nginx and PHP-FPM, based on Alpine Linux."
 
 RUN docker-php-ext-install pdo pdo_mysql
 
